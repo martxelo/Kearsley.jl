@@ -9,7 +9,7 @@ export RMSD, apply_transform, rot_trans
 function RMSD(u::Matrix, v::Matrix)
 
     # calculate bestfit
-    rmsd, quaternion = bestfit(u, v)
+    rmsd, _ = bestfit(u, v)
 
     return rmsd
 
@@ -29,7 +29,7 @@ end
 function rot_trans(u::Matrix, v::Matrix)
 
     # calculate bestfit
-    rmsd, quaternion = bestfit(u, v)
+    _, quaternion = bestfit(u, v)
 
     # rotation
     rotation = rot_from_quat(quaternion)
@@ -43,6 +43,10 @@ end
 
 
 function bestfit(u::Matrix, v::Matrix)
+
+    # check dimensions
+    size(u, 2) == 3 || throw(ArgumentError("u must have three columns"))
+    size(v, 2) == 3 || throw(ArgumentError("v must have three columns"))
 
     # centroids
     centroid_u = mean(u, dims=1)
