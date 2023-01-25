@@ -52,7 +52,7 @@ julia> trans
 
 ```
 
-The three functions are independent. All of them calculates the bestfit and returns only the expected values. You don't need to run them in any order.
+The three functions are independent. All of them calculate the bestfit and return only the expected values. You don't need to run them in any order.
 
 ## Aplications
 
