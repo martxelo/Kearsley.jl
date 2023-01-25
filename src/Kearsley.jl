@@ -47,7 +47,7 @@ julia> u = [0 0 0; 1 0 0; 0 1 0; 0 0 1; 1 1 0; 1 0 1; 0 1 1; 1 1 1];
 julia> v = [1 2 3; 1 1 3; 2 2 3; 1 2 4; 2 1 3; 1 1 4; 2 2 4; 2 1 4];
 julia> v += rand(8, 3)*0.1 .- 0.05;
 julia> apply_transform(u, v)
-8×3 adjoint(::Matrix{Float64}) with eltype Float64:
+8×3 Matrix{Float64}:
  -0.0311056    0.0103788   -0.0189077
   1.00105      0.00169611  -0.0166774
  -0.00815348   0.960191    -0.0231755
@@ -63,7 +63,7 @@ function apply_transform(u::Matrix, v::Matrix)
     # calculate rotation and translation
     rotation, translation = rot_trans(u, v)
 
-    return (rotation*(v' .- translation))'
+    return Matrix((rotation*(v' .- translation))')
 
 end
 
